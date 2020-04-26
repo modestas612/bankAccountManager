@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bank statements</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <h1>Bank statements</h1>
+
+                <div class="import-btn">
+                    <form action="#" th:action="@{'/import'}" >
+                        <button type="submit" id="importButton" class="btn btn-primary">Import file</button>
+                    </form>
+                </div>
+
+                <div class="export-btn">
+                    <form action="#" th:action="@{'/exportFile'}" >
+                        <button type="submit" id="exportButton" class="btn btn-primary">Export statements</button>
+                    </form>
+                </div>
+
+                <table class="table table-striped" >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Account Number</th>
+                            <th scope="col">Operation date</th>
+                            <th scope="col">Beneficiary</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Currency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="bankStatement : ${bankStatements}">
+                            <td th:text="${bankStatement.id}"></td>
+                            <td th:text="${bankStatement.accountNumber}"></td>
+                            <td th:text="${bankStatement.operationDate}"></td>
+                            <td th:text="${bankStatement.beneficiary}"></td>
+                            <td th:text="${bankStatement.comment}"></td>
+                            <td th:text="${bankStatement.amount}"></td>
+                            <td th:text="${bankStatement.currency}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
