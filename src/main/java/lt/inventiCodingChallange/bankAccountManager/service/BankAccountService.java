@@ -31,6 +31,7 @@ public class BankAccountService{
     @Autowired
     private BankStatementRepository bankStatementRepository;
 
+
     public List<BankStatement> findAll() {
         return bankStatementRepository.findAll();
     }
@@ -65,7 +66,7 @@ public class BankAccountService{
             FileWriter writer = new FileWriter(csvFile);
             BufferedWriter bw = new BufferedWriter(writer);
             PrintWriter pw = new PrintWriter(bw);
-            for(BankStatement st: bankStatementRepository.findAll()){
+            for(BankStatement st: findAll()){
                 pw.println(st.getAccountNumber()+","+st.getOperationDate()+","+st.getBeneficiary()+","+st.getComment()+","+st.getAmount()+","+st.getCurrency());
             }
             pw.flush();
@@ -73,5 +74,23 @@ public class BankAccountService{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Double balance(Date dateFrom, Date dateTo, String accountNumber){
+        List<BankStatement> statements = bankStatementRepository.findAllByAccountNumber(accountNumber);
+        Double sum = 0.0;
+        for (BankStatement st: statements){
+            if (isBetWeen(st.getOperationDate(), dateFrom, dateTo) && st.getAmount() != null){
+                sum = sum + st.getAmount();
+            }
+        }
+        return sum;
+    }
+
+    public static boolean isBetWeen(Date date, Date from, Date to){
+        if(date == null){
+            return false;
+        }
+        return from == null ? (to == null ? true : to.after(date)) : (to == null ? from.before(date) : (to.after(date) && from.before(date)));
     }
 }
