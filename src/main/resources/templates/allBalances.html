@@ -10,9 +10,9 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-10 mx-auto">
-                <h1>Account balances</h1>
+                <h1>Account balance calculation history</h1>
 
-                <div class="back-btn">
+                <div class="back-btn" style="margin-bottom: 20px;">
                     <form action="#" th:action="@{'/'}" >
                         <button type="submit" id="backButton" class="btn btn-primary">Back</button>
                     </form>
@@ -32,7 +32,7 @@
                         <tr th:each="balance : ${balanceList}">
                             <td th:text="${balance.id}"></td>
                             <td th:text="${balance.accountNumber}"></td>
-                            <td th:text="${balance.accountBalance}"></td>
+                            <td th:text="${#numbers.formatDecimal(balance.accountBalance, 0, 'COMMA', 2, 'POINT')}"></td>
                             <td th:text="${balance.dateFrom}"></td>
                             <td th:text="${balance.dateTo}"></td>
                         </tr>

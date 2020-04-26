@@ -60,14 +60,16 @@ public class BankAccountService{
         }
     }
 
-    public void exportBankStatement(){
+    public void exportBankStatement(Date dateFrom, Date dateTo){
         File csvFile = new File(rootLocation + "/bankStatements.csv");
         try {
             FileWriter writer = new FileWriter(csvFile);
             BufferedWriter bw = new BufferedWriter(writer);
             PrintWriter pw = new PrintWriter(bw);
             for(BankStatement st: findAll()){
-                pw.println(st.getAccountNumber()+","+st.getOperationDate()+","+st.getBeneficiary()+","+st.getComment()+","+st.getAmount()+","+st.getCurrency());
+                if(isBetWeen(st.getOperationDate(), dateFrom, dateTo)){
+                    pw.println(st.getAccountNumber()+","+st.getOperationDate()+","+st.getBeneficiary()+","+st.getComment()+","+st.getAmount()+","+st.getCurrency());
+                }
             }
             pw.flush();
             pw.close();

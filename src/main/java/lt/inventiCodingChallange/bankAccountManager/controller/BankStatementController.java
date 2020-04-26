@@ -52,6 +52,13 @@ public class BankStatementController {
         return modelAndView;
     }
 
+    @GetMapping("/export")
+    public ModelAndView exportForm(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("export-form");
+        return modelAndView;
+    }
+
     @GetMapping("/balance")
     public ModelAndView balanceForm(Model model){
         ModelAndView modelAndView = new ModelAndView();
@@ -66,9 +73,11 @@ public class BankStatementController {
         response.sendRedirect("/");
     }
 
-    @GetMapping("/exportFile")
-    public void exportCSVFile(HttpServletResponse response) throws IOException {
-        bankAccountService.exportBankStatement();
+    @PostMapping("/exportFile")
+    public void exportCSVFile(@RequestParam("dateFrom") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateFrom,
+                              @RequestParam("dateTo") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateTo,
+                              HttpServletResponse response) throws IOException {
+        bankAccountService.exportBankStatement(dateFrom, dateTo);
         response.sendRedirect("/");
     }
 

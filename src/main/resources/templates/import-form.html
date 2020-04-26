@@ -16,8 +16,14 @@
                         <label for="file">Add a CSV file</label>
                         <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
                     </div>
-                    <button type="submit" class="btn btn-primary">Import</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Import</button>
                 </form>
+
+                <div class="back-btn" style="margin-top: 20px;">
+                    <form action="#" th:action="@{'/'}" >
+                        <button type="submit" id="backButton" class="btn btn-primary">Back</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

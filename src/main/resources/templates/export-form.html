@@ -10,18 +10,17 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-6 mx-auto">
-                <h1>Calculate balance</h1>
-                <form method="POST" th:action="@{/balanceCalc}" enctype="multipart/form-data">
+                <h1>Data export to CSV</h1>
+                <form method="POST" th:action="@{/exportFile}" enctype="multipart/form-data">
                     <div class="form-group mt-3">
-                        <label for="accountNumber">Account number</label>
-                        <input type="text" required="required" name="accountNumber" id="accountNumber" class="form-control">
                         <label for="dateFrom">Beginning</label>
                         <input type="date" name="dateFrom" id="dateFrom" class="form-control">
                         <label for="dateTo">End</label>
                         <input type="date" name="dateTo" id="dateTo" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Calculate</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Export</button>
                 </form>
+
                 <div class="back-btn" style="margin-top: 20px;">
                     <form action="#" th:action="@{'/'}" >
                         <button type="submit" id="backButton" class="btn btn-primary">Back</button>

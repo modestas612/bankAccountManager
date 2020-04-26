@@ -12,19 +12,19 @@
             <div class="col-10 mx-auto">
                 <h1>Bank statements</h1>
 
-                <div class="import-btn">
+                <div class="import-btn" style="margin-bottom: 20px;">
                     <form action="#" th:action="@{'/import'}" >
                         <button type="submit" id="importButton" class="btn btn-primary">Import file</button>
                     </form>
                 </div>
 
-                <div class="export-btn">
-                    <form action="#" th:action="@{'/exportFile'}" >
+                <div class="export-btn" style="margin-bottom: 20px;">
+                    <form action="#" th:action="@{'/export'}" >
                         <button type="submit" id="exportButton" class="btn btn-primary">Export statements</button>
                     </form>
                 </div>
 
-                <div class="balance-btn">
+                <div class="balance-btn" style="margin-bottom: 20px;">
                     <form action="#" th:action="@{'/balance'}" >
                         <button type="submit" id="balanceCalcButton" class="btn btn-primary">Balance calculation</button>
                     </form>
